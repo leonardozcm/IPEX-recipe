@@ -1,0 +1,33 @@
+{% set name = "intel_pytorch_extension" %}
+{% set version = "1.8.0" %}
+
+package:
+    name: {{ name }}
+    version: {{ version }}
+
+source:
+    git_url: https://github.com/leonardozcm/IPEX-recipe.git
+
+build:
+    number: 0
+    skip: True # [py<36]
+    skip: True # [win]
+    include_recipe: False
+
+requirements:
+    build:
+       - python
+       - setuptools
+
+    run:
+        - python
+        - 'cpuonly >=1.0'
+        - 'pytorch ==1.8.0'
+
+test:
+  imports:
+    - intel_pytorch_extension 
+
+about:
+    home: https://github.com/leonardozcm/intel-extension-for-pytorch
+    description: This wheel is ONLY built for orca-lite test, please refer to the official release.

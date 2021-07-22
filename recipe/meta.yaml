@@ -10,21 +10,24 @@ source:
 
 build:
     number: 0
-    skip: True # [py<36]
     skip: True # [win]
+    # noarch: python
     include_recipe: False
 
 requirements:
     build:
        - python
-       - setuptools
-
+       - pip
     run:
         - python
         - 'cpuonly >=1.0'
         - 'pytorch ==1.8.0'
 
 test:
+  requires:
+    - python
+    - 'cpuonly >=1.0'
+    - 'pytorch ==1.8.0'
   imports:
     - intel_pytorch_extension 
 
